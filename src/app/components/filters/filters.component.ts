@@ -46,4 +46,10 @@ export class FiltersComponent implements OnInit {
   applyFilters(): void {
     this.filtersChanged.emit(this.filtersForm.value);
   }
+
+  trackByFunction(index: number, item: any): number {
+    return item.id; // Substitua 'id' pelo identificador único adequado do item
+}
+
+  
 }
