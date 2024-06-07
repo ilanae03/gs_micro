@@ -1,0 +1,82 @@
+<div class="container-fluid p-5">
+    <h1>Filtros</h1>
+    <form [formGroup]="filtersForm" (ngSubmit)="applyFilters()" class="row g-3">
+        <div class="col-auto">
+            <label for="region" class="form-label">Região:</label>
+            <select id="region" class="form-select" formControlName="regiao">
+                <option value="">Todas</option>
+                <option *ngFor="let region of oceanos" [value]="region.regiao">{{ region.regiao }}</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label for="species" class="form-label">Espécie:</label>
+            <select id="species" class="form-select" formControlName="especie">
+                <option value="">Todas</option>
+                <option *ngFor="let especie of especies" [value]="especie">{{ especie }}</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label for="conservationStatus" class="form-label">Status de Conservação:</label>
+            <select id="conservationStatus" class="form-select" formControlName="statusConservacao">
+                <option value="">Todos</option>
+                <option *ngFor="let status of statusConservacao" [value]="status">{{ status }}</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label for="waterTemperature" class="form-label">Temperatura da Água:</label>
+            <input type="text" class="form-control" id="waterTemperature" formControlName="temperaturaAgua">
+        </div>
+        <div class="col-auto">
+            <label for="pH" class="form-label">pH:</label>
+            <input type="text" class="form-control" id="pH" formControlName="pH">
+        </div>
+        <div class="col-auto">
+            <label for="pollutionLevels" class="form-label">Níveis de Poluição:</label>
+            <input type="text" class="form-control" id="pollutionLevels" formControlName="niveisPoluicao">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="container-fluid p-5">
+    <h1>Dados</h1>
+    <table class="table table-dark table-striped-columns mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Região</th>
+          <th scope="col">Temperatura da Água</th>
+          <th scope="col">pH</th>
+          <th scope="col">Nível de Poluição</th>
+          <th scope="col">Espécies</th>
+          <th scope="col">Projetos de Conservação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of oceanos; track $index">
+          <td>{{ item.regiao }}</td>
+          <td>{{ item.temperaturaAgua }}</td>
+          <td>{{ item.pH }}</td>
+          <td>{{ item.niveisPoluicao }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let especie of item.especies">
+                {{ especie.nome }} ({{ especie.status }})
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let projeto of item.projetosConservacao">
+                {{ projeto.nomeProjeto }} - {{ projeto.tipoProjeto }} ({{ projeto.tipoParticipacao }})
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
