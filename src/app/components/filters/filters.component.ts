@@ -35,9 +35,7 @@ export class FiltersComponent {
   }
 
   ngOnInit(): void {
-    this.getOceanos();
-    this.getEspecies();
-    this.getStatusConservacao();
+    this.getOceanos()
 
     this.filtersForm.valueChanges.subscribe(() => {
       this.applyFilters();
@@ -45,18 +43,7 @@ export class FiltersComponent {
   }
 
   getOceanos(): void {
-    this.apiService.getOceanos().subscribe(oceanos => {
-      this.oceanos = oceanos;
-      this.filteredOceanos = oceanos;
-    });
-  }
-
-  getEspecies(): void {
-    this.apiService.getEspecies().subscribe(especies => this.especies = especies);
-  }
-
-  getStatusConservacao(): void {
-    this.apiService.getStatusConservacao().subscribe(status => this.statusConservacao = status);
+    this.apiService.getOceanos().subscribe(oceanos => {this.oceanos = oceanos});
   }
 
   applyFilters(): void {

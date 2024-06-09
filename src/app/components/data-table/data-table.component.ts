@@ -9,8 +9,4 @@ import { ApiService } from '../../services/api.service';
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.css'
 })
-export class DataTableComponent {
-  oceanos: any[] = [];
-  constructor(){}
-
-}
+export class DataTableComponent {}

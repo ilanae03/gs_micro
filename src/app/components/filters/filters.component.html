@@ -60,10 +60,13 @@
       </div>
       <div class="col-lg-2 col-md-4 col-sm-6">
         <div class="row">
-          <label for="pollutionLevels" class="col-form-label">Níveis de Poluição:</label>
+          <label for="conservationStatus" class="col-form-label">Níveis Poluição:</label>
           <div class="col">
-            <input type="text" class="form-control" id="pollutionLevels" formControlName="niveisPoluicao">
-          </div>
+            <select id="region" class="form-select" formControlName="regiao">
+              <option value="">Todas</option>
+              <option *ngFor="let oceano of oceanos" [value]="oceano.nivelPoluicao">{{ oceano.nivelPoluicao }}</option>
+            </select>
+          </div>          
         </div>
       </div>
       <div class="col-12">

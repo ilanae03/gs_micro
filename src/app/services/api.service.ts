@@ -15,15 +15,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getOceanos(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?oceanos`);
-  }
-
-  getEspecies(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?especie`);
-  }
-
-  getStatusConservacao(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?statusConservacao`);
+    return this.http.get<any[]>(`${this.apiUrl}`);
   }
 }
 
