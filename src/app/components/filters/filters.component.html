@@ -7,7 +7,7 @@
         <div class="col">
           <select id="region" class="form-select" formControlName="regiao">
             <option value="">Todas</option>
-            <option *ngFor="let oceano of oceanos" [value]="oceano.regiao">{{ oceano.regiao }}</option>
+            <option *ngFor="let regiao of regioes" [value]="regiao">{{ regiao }}</option>
           </select>
         </div>
       </div>
@@ -17,12 +17,8 @@
         <label for="especies" class="col-form-label">Espécies:</label>
         <div class="col">
           <select id="especies" class="form-select" formControlName="especies">
-            <option value="">Todos</option>
-            <ng-container *ngFor="let oceano of oceanos">
-              <ng-container *ngFor="let especie of oceano.especies">
-                <option [value]="especie.nome">{{ especie.nome }}</option>
-              </ng-container>
-            </ng-container>
+            <option value="">Todas</option>
+            <option *ngFor="let especie of especies" [value]="especie">{{ especie }}</option>
           </select>
         </div>
       </div>
@@ -33,11 +29,7 @@
         <div class="col">
           <select id="statusConservacao" class="form-select" formControlName="statusConservacao">
             <option value="">Todos</option>
-            <ng-container *ngFor="let oceano of oceanos">
-              <ng-container *ngFor="let especie of oceano.especies">
-                <option [value]="especie.status">{{ especie.status }}</option>
-              </ng-container>
-            </ng-container>
+            <option *ngFor="let status of statusConservacao" [value]="status">{{ status }}</option>
           </select>
         </div>
       </div>
@@ -47,8 +39,8 @@
         <label for="nivelPoluicao" class="col-form-label">Níveis Poluição:</label>
         <div class="col">
           <select id="nivelPoluicao" class="form-select" formControlName="nivelPoluicao">
-            <option value="">Todas</option>
-            <option *ngFor="let oceano of oceanos" [value]="oceano.nivelPoluicao">{{ oceano.nivelPoluicao }}</option>
+            <option value="">Todos</option>
+            <option *ngFor="let nivel of niveisPoluicao" [value]="nivel">{{ nivel }}</option>
           </select>
         </div>
       </div>

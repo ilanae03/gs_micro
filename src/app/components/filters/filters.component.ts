@@ -18,6 +18,11 @@ export class FiltersComponent implements OnInit {
   filteredOceanos: Oceanos[] = [];
   filtersForm: FormGroup;
 
+  regioes = ["Atlântico Norte", "Atlântico Sul", "Pacífico Norte", "Pacífico Sul", "Índico", "Ártico", "Antártico"];
+  especies = ["Baleia-azul", "Tubarão-branco", "Peixe-palhaço", "Tartaruga-verde", "Coral"];
+  statusConservacao = ["Ameaçada", "Vulnerável", "Menos preocupante", "Criticamente ameaçado"];
+  niveisPoluicao = ["Baixo", "Moderado", "Alto"];
+
   constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
     this.filtersForm = this.formBuilder.group({
       regiao: [''],
