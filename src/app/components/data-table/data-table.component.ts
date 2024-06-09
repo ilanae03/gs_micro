@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 
 @Component({
@@ -10,4 +10,7 @@ import { ApiService } from '../../services/api.service';
   styleUrl: './data-table.component.css'
 })
 export class DataTableComponent {
+  oceanos: any[] = [];
+  constructor(){}
+
 }

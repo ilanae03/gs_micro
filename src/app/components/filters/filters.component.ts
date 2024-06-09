@@ -1,55 +1,65 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DataTableComponent } from "../data-table/data-table.component";
 import { ApiService } from '../../services/api.service';
 import { Oceanos } from '../../interfaces/oceanos';
+import { Especie } from '../../interfaces/especies';
+import { ProjetoConservacao } from '../../interfaces/projetos';
 
 @Component({
-  selector: 'app-filters',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './filters.component.html',
-  styleUrl: './filters.component.css'
+    selector: 'app-filters',
+    standalone: true,
+    templateUrl: './filters.component.html',
+    styleUrl: './filters.component.css',
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, DataTableComponent]
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent {
+
   @Output() filtersChanged = new EventEmitter<FormGroup>();
   oceanos: Oceanos[] = [];
-  especies: string[] = [];
-  statusConservacao: string[] = [];
+  filteredOceanos: Oceanos[] = [];
+  especies: Especie[] = [];
+  statusConservacao: Especie[] = [];
   filtersForm: FormGroup;
 
-  constructor(private apiService: ApiService, private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
     this.filtersForm = this.formBuilder.group({
-      regiao: [''],
-      especie: [''],
-      statusConservacao: [''],
-      temperaturaAgua: [''],
-      pH: [''],
-      niveisPoluicao: ['']
+      regiao: ['', Validators.required],
+      especies: ['', Validators.required],
+      statusConservacao: ['', Validators.required],
+      temperaturaAgua: ['', Validators.required],
+      pH: ['', Validators.required],
+      niveisPoluicao: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
     this.getOceanos();
-  }
+    this.getEspecies();
+    this.getStatusConservacao();
 
-  getOceanos(): void {
-    this.apiService.getDados().subscribe(oceanos => {
-      this.oceanos = oceanos;
-
-      // Map species and conservation statuses
-      this.especies = [...new Set(oceanos.flatMap(oceano => oceano.especies.map(especie => especie.nome)))];
-      this.statusConservacao = [...new Set(oceanos.flatMap(oceano => oceano.especies.map(especie => especie.status)))];
+    this.filtersForm.valueChanges.subscribe(() => {
+      this.applyFilters();
     });
   }
 
-  applyFilters(): void {
-    this.filtersChanged.emit(this.filtersForm.value);
+  getOceanos(): void {
+    this.apiService.getOceanos().subscribe(oceanos => {
+      this.oceanos = oceanos;
+      this.filteredOceanos = oceanos;
+    });
   }
 
-  trackByFunction(index: number, item: any): number {
-    return item.id; // Substitua 'id' pelo identificador único adequado do item
-}
+  getEspecies(): void {
+    this.apiService.getEspecies().subscribe(especies => this.especies = especies);
+  }
 
-  
+  getStatusConservacao(): void {
+    this.apiService.getStatusConservacao().subscribe(status => this.statusConservacao = status);
+  }
+
+  applyFilters(): void {
+
+}
 }
