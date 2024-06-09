@@ -1,18 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DataTableComponent } from "../data-table/data-table.component";
 import { ApiService } from '../../services/api.service';
 import { Oceanos } from '../../interfaces/oceanos';
 import { Especie } from '../../interfaces/especies';
-import { ProjetoConservacao } from '../../interfaces/projetos';
 
 @Component({
     selector: 'app-filters',
     standalone: true,
     templateUrl: './filters.component.html',
     styleUrl: './filters.component.css',
-    imports: [CommonModule, FormsModule, ReactiveFormsModule, DataTableComponent]
+    imports: [CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class FiltersComponent {
 
@@ -36,10 +34,6 @@ export class FiltersComponent {
 
   ngOnInit(): void {
     this.getOceanos()
-
-    this.filtersForm.valueChanges.subscribe(() => {
-      this.applyFilters();
-    });
   }
 
   getOceanos(): void {
@@ -48,5 +42,5 @@ export class FiltersComponent {
 
   applyFilters(): void {
 
-}
+  }
 }

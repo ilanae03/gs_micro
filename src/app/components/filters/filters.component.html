@@ -44,6 +44,17 @@
       </div>
       <div class="col-lg-2 col-md-4 col-sm-6">
         <div class="row">
+          <label for="conservationStatus" class="col-form-label">Níveis Poluição:</label>
+          <div class="col">
+            <select id="region" class="form-select" formControlName="regiao">
+              <option value="">Todas</option>
+              <option *ngFor="let oceano of oceanos" [value]="oceano.nivelPoluicao">{{ oceano.nivelPoluicao }}</option>
+            </select>
+          </div>          
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-6">
+        <div class="row">
           <label for="waterTemperature" class="col-form-label">Temperatura da Água:</label>
           <div class="col">
             <input type="text" class="form-control" id="waterTemperature" formControlName="temperaturaAgua">
@@ -56,17 +67,6 @@
           <div class="col">
             <input type="text" class="form-control" id="pH" formControlName="pH">
           </div>
-        </div>
-      </div>
-      <div class="col-lg-2 col-md-4 col-sm-6">
-        <div class="row">
-          <label for="conservationStatus" class="col-form-label">Níveis Poluição:</label>
-          <div class="col">
-            <select id="region" class="form-select" formControlName="regiao">
-              <option value="">Todas</option>
-              <option *ngFor="let oceano of oceanos" [value]="oceano.nivelPoluicao">{{ oceano.nivelPoluicao }}</option>
-            </select>
-          </div>          
         </div>
       </div>
       <div class="col-12">
@@ -84,9 +84,9 @@
           <th scope="col">Região</th>
           <th scope="col">Espécies</th>
           <th scope="col">Status de Conservação</th>
+          <th scope="col">Nível de Poluição</th>
           <th scope="col">Temperatura da Água</th>
           <th scope="col">pH</th>
-          <th scope="col">Nível de Poluição</th>
         </tr>
       </thead>
       <tbody>
@@ -102,9 +102,9 @@
               <li *ngFor="let especieStatus of item.especies">{{ especieStatus.status }}</li>
             </ul>
           </td>
+          <td>{{ item.nivelPoluicao }}</td>
           <td>{{ item.temperaturaAgua }}</td>
           <td>{{ item.pH }}</td>
-          <td>{{ item.nivelPoluicao }}</td>
         </tr>
       </tbody>
     </table>
