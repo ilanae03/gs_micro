@@ -1,115 +1,110 @@
 <div class="container-fluid p-5">
-    <h1>Filtros</h1>
-    <form [formGroup]="filtersForm" (ngSubmit)="applyFilters()" class="row g-3">
-      <div class="col-lg-2 col-md-4 col-sm-6">
-        <div class="row">
-          <label for="region" class="col-form-label">Região:</label>
-          <div class="col">
-            <select id="region" class="form-select" formControlName="regiao">
-              <option value="">Todas</option>
-              <option *ngFor="let oceano of oceanos" [value]="oceano.regiao">{{ oceano.regiao }}</option>
-            </select>
-          </div>
+  <h1>Filtros</h1>
+  <form [formGroup]="filtersForm" (ngSubmit)="applyFilters()" class="row g-3">
+    <div class="col-lg-2 col-md-4 col-sm-6">
+      <div class="row">
+        <label for="region" class="col-form-label">Região:</label>
+        <div class="col">
+          <select id="region" class="form-select" formControlName="regiao">
+            <option value="">Todas</option>
+            <option *ngFor="let oceano of oceanos" [value]="oceano.regiao">{{ oceano.regiao }}</option>
+          </select>
         </div>
       </div>
-      <div class="col-lg-2 col-md-4 col-sm-6">
-        <div class="row">
-            <label for="conservationStatus" class="col-form-label">Espécies:</label>
-            <div class="col">
-              <select id="conservationStatus" class="form-select" formControlName="especies">
-                <option value="">Todos</option>
-                <ng-container *ngFor="let oceano of oceanos">
-                  <ng-container *ngFor="let especie of oceano.especies">
-                    <option [value]="especie.nome">{{ especie.nome }}</option>
-                  </ng-container>
-                </ng-container>
-              </select>
-            </div>          
-          </div>
-      </div>
-      <div class="col-lg-2 col-md-4 col-sm-6">
-        <div class="row">
-          <label for="conservationStatus" class="col-form-label">Status de Conservação:</label>
-          <div class="col">
-            <select id="conservationStatus" class="form-select" formControlName="statusConservacao">
-              <option value="">Todos</option>
-              <ng-container *ngFor="let oceano of oceanos">
-                <ng-container *ngFor="let especie of oceano.especies">
-                  <option [value]="especie.status">{{ especie.status }}</option>
-                </ng-container>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6">
+      <div class="row">
+        <label for="especies" class="col-form-label">Espécies:</label>
+        <div class="col">
+          <select id="especies" class="form-select" formControlName="especies">
+            <option value="">Todos</option>
+            <ng-container *ngFor="let oceano of oceanos">
+              <ng-container *ngFor="let especie of oceano.especies">
+                <option [value]="especie.nome">{{ especie.nome }}</option>
               </ng-container>
-            </select>
-          </div>          
+            </ng-container>
+          </select>
         </div>
       </div>
-      <div class="col-lg-2 col-md-4 col-sm-6">
-        <div class="row">
-          <label for="conservationStatus" class="col-form-label">Níveis Poluição:</label>
-          <div class="col">
-            <select id="region" class="form-select" formControlName="regiao">
-              <option value="">Todas</option>
-              <option *ngFor="let oceano of oceanos" [value]="oceano.nivelPoluicao">{{ oceano.nivelPoluicao }}</option>
-            </select>
-          </div>          
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6">
+      <div class="row">
+        <label for="statusConservacao" class="col-form-label">Status de Conservação:</label>
+        <div class="col">
+          <select id="statusConservacao" class="form-select" formControlName="statusConservacao">
+            <option value="">Todos</option>
+            <ng-container *ngFor="let oceano of oceanos">
+              <ng-container *ngFor="let especie of oceano.especies">
+                <option [value]="especie.status">{{ especie.status }}</option>
+              </ng-container>
+            </ng-container>
+          </select>
         </div>
       </div>
-      <div class="col-lg-2 col-md-4 col-sm-6">
-        <div class="row">
-          <label for="waterTemperature" class="col-form-label">Temperatura da Água:</label>
-          <div class="col">
-            <input type="text" class="form-control" id="waterTemperature" formControlName="temperaturaAgua">
-          </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6">
+      <div class="row">
+        <label for="nivelPoluicao" class="col-form-label">Níveis Poluição:</label>
+        <div class="col">
+          <select id="nivelPoluicao" class="form-select" formControlName="nivelPoluicao">
+            <option value="">Todas</option>
+            <option *ngFor="let oceano of oceanos" [value]="oceano.nivelPoluicao">{{ oceano.nivelPoluicao }}</option>
+          </select>
         </div>
       </div>
-      <div class="col-lg-2 col-md-4 col-sm-6">
-        <div class="row">
-          <label for="pH" class="col-form-label">pH:</label>
-          <div class="col">
-            <input type="text" class="form-control" id="pH" formControlName="pH">
-          </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6">
+      <div class="row">
+        <label for="waterTemperature" class="col-form-label">Temperatura da Água:</label>
+        <div class="col">
+          <input type="text" class="form-control" id="waterTemperature" formControlName="temperaturaAgua">
         </div>
       </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-success">Aplicar Filtros</button>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6">
+      <div class="row">
+        <label for="pH" class="col-form-label">pH:</label>
+        <div class="col">
+          <input type="text" class="form-control" id="pH" formControlName="pH">
+        </div>
       </div>
-    </form>
-  </div>
-  
-
-<div class="container-fluid p-5">
-    <h1>Dados</h1>
-    <table class="table table-dark table-striped-columns mt-3">
-      <thead>
-        <tr>
-          <th scope="col">Região</th>
-          <th scope="col">Espécies</th>
-          <th scope="col">Status de Conservação</th>
-          <th scope="col">Nível de Poluição</th>
-          <th scope="col">Temperatura da Água</th>
-          <th scope="col">pH</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of oceanos">
-          <td>{{ item.regiao }}</td>
-          <td>
-            <ul>
-              <li *ngFor="let especie of item.especies">{{ especie.nome }}</li>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <li *ngFor="let especieStatus of item.especies">{{ especieStatus.status }}</li>
-            </ul>
-          </td>
-          <td>{{ item.nivelPoluicao }}</td>
-          <td>{{ item.temperaturaAgua }}</td>
-          <td>{{ item.pH }}</td>
-        </tr>
-      </tbody>
-    </table>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-success">Aplicar Filtros</button>
+    </div>
+  </form>
 </div>
 
-
-
-  
+<div class="container-fluid p-5">
+  <h1>Dados</h1>
+  <table class="table table-dark table-striped-columns mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Região</th>
+        <th scope="col">Espécies</th>
+        <th scope="col">Status de Conservação</th>
+        <th scope="col">Nível de Poluição</th>
+        <th scope="col">Temperatura da Água</th>
+        <th scope="col">pH</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredOceanos">
+        <td>{{ item.regiao }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let especie of item.especies">{{ especie.nome }}</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let especieStatus of item.especies">{{ especieStatus.status }}</li>
+          </ul>
+        </td>
+        <td>{{ item.nivelPoluicao }}</td>
+        <td>{{ item.temperaturaAgua }}</td>
+        <td>{{ item.pH }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

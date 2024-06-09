@@ -12,35 +12,37 @@ import { Especie } from '../../interfaces/especies';
     styleUrl: './filters.component.css',
     imports: [CommonModule, FormsModule, ReactiveFormsModule]
 })
-export class FiltersComponent {
-
+export class FiltersComponent implements OnInit {
   @Output() filtersChanged = new EventEmitter<FormGroup>();
   oceanos: Oceanos[] = [];
   filteredOceanos: Oceanos[] = [];
-  especies: Especie[] = [];
-  statusConservacao: Especie[] = [];
   filtersForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
     this.filtersForm = this.formBuilder.group({
-      regiao: ['', Validators.required],
-      especies: ['', Validators.required],
-      statusConservacao: ['', Validators.required],
-      temperaturaAgua: ['', Validators.required],
-      pH: ['', Validators.required],
-      niveisPoluicao: ['', Validators.required]
+      regiao: [''],
+      especies: [''],
+      statusConservacao: [''],
+      temperaturaAgua: [''],
+      pH: [''],
+      nivelPoluicao: ['']
     });
   }
 
   ngOnInit(): void {
-    this.getOceanos()
+    this.getOceanos();
   }
 
-  getOceanos(): void {
-    this.apiService.getOceanos().subscribe(oceanos => {this.oceanos = oceanos});
+  getOceanos(filters?: any, page: number = 1, pageSize: number = 20): void {
+    this.apiService.getOceanos(filters, page, pageSize).subscribe(oceanos => {
+      this.oceanos = oceanos;
+      this.filteredOceanos = oceanos;
+    });
   }
 
   applyFilters(): void {
-
+    const filters = this.filtersForm.value;
+    this.getOceanos(filters);
+    this.filtersChanged.emit(this.filtersForm);
   }
 }
